@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Layout</title>
+    <style>
+        body {
+            background-color: #333; /* Cor de fundo cinza escuro */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #444; /* Tom mais escuro para o topo */
+            border-bottom: 2px solid #555;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background-image: url('https://media.discordapp.net/attachments/1313212452821012552/1318942356078067742/4810e501604f87ef7283db65e2eba870.png?ex=6766228a&is=6764d10a&hm=41f76823e3745527cdd3bc8de75f59c1f8950844bc2fefec0e479479d64a741a&=&format=webp&quality=lossless&width=230&height=230'); /* Coloque a URL da sua imagem aqui */
+            background-size: cover;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: red; /* Cor vermelha para o título */
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Estilo da caixa (box) abaixo do header */
+        .box {
+            background-color: #444;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .box h2 {
+            color: red;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .box form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .box label {
+            font-size: 18px;
+        }
+
+        .box input[type="text"], .box input[type="number"], .box select {
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .box input[type="text"]::placeholder,
+        .box input[type="number"]::placeholder,
+        .box select::placeholder {
+            color: #bbb; /* Cor do texto do placeholder mais visível */
+        }
+
+        .box button {
+            padding: 10px 20px;
+            background-color: red;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .box button:hover {
+            background-color: #cc0000;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+
+            .menu li {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .box {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            .box h2 {
+                font-size: 20px;
+            }
+
+            .box label {
+                font-size: 16px;
+            }
+
+            .box input[type="text"], .box input[type="number"], .box select {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .box button {
+                font-size: 16px;
+            }
+        }
+
+        /* Estilo da notificação */
+        .notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #28a745;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo"></div>
+        <ul class="menu">
+            <li><a href="#">Form Comanf</a></li>
+        </ul>
+    </header>
+
+    <!-- Caixa com perguntas -->
+    <div class="box">
+        <h2>Coleta de dados para o Rec</h2>
+        <form id="formComanf">
+            <label for="discord">Seu Discord:</label>
+            <input type="text" id="discord" name="discord" placeholder="Exemplo: ows22 ??" required>
+
+            <label for="nome_occ">Nome (OCC):</label>
+            <input type="text" id="nome_occ" name="nome_occ" placeholder="Exemplo: Bernardo" required>
+
+            <label for="nome_rg">Nome e RG (IC):</label>
+            <input type="text" id="nome_rg" name="nome_rg" placeholder="Exemplo: Benny_Psyco- RG 117" required>
+
+            <label for="idade">Idade (OCC):</label>
+            <input type="number" id="idade" name="idade" placeholder="Exemplo: 18" required>
+
+            <label for="prisao">Quantas Prisões Tomou (IC):</label>
+            <input type="number" id="prisao" name="prisao" placeholder="Exemplo: 1" required>
+
+            <label for="porte_arma">Possui Porte de Arma (IC):</label>
+            <select id="porte_arma" name="porte_arma" required>
+                <option value="" disabled selected>Selecione uma opcao</option>
+                <option value="sim">Sim</option>
+                <option value="nao">Nao</option>
+            </select>
+
+            <label for="cnh">Possui CNH 'A e B' (IC):</label>
+            <select id="cnh" name="cnh" required>
+                <option value="" disabled selected>Selecione uma opcao</option>
+                <option value="sim">Sim</option>
+                <option value="nao">Nao</option>
+            </select>
+
+            <label for="plataforma">PC ou Mobile:</label>
+            <select id="plataforma" name="plataforma" required>
+                <option value="" disabled selected>Selecione uma plataforma</option>
+                <option value="pc">PC</option>
+                <option value="mobile">Mobile</option>
+            </select>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <!-- Notificação de sucesso -->
+    <div id="notification" class="notification">
+        Formulário enviado com sucesso!
+    </div>
+
+    <script>
+        // Webhook do Discord
+        const webhookUrl = 'https://discord.com/api/webhooks/1319354889536667779/R_qyAJbwE5w78iKJ0DJqDdGomSQaLQToL0hCoHMDvD60n5o3Ev-rs15J5-knLp08BdU-'; // Coloque o seu Webhook do Discord aqui
+
+        document.getElementById('formComanf').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            // Coleta os dados do formulário
+            const formData = new FormData(this);
+            const formValues = Object.fromEntries(formData.entries());
+
+            // Criação do embed para enviar para o Discord
+            const payload = {
+                embeds: [{
+                    color: 0xFF0000, // Cor vermelha do embed
+                    title: "Novo Form!!",
+                    description: `
+**Discord:** - ${formValues.discord}
+**Nome (OCC):** - ${formValues.nome_occ}
+**Nome e RG (IC):** - ${formValues.nome_rg}
+**Idade (OCC):** - ${formValues.idade}
+**Quantas Prisões Tomou (IC):** - ${formValues.prisao}
+**Possui Porte de Arma (IC):** - ${formValues.porte_arma}
+**Possui CNH 'A e B' (IC):**  - ${formValues.cnh}
+**PC ou Mobile:**  - ${formValues.plataforma}`,
+                    thumbnail: {
+                        url: "https://media.discordapp.net/attachments/1313212452821012552/1318942356078067742/4810e501604f87ef7283db65e2eba870.png?ex=6766228a&is=6764d10a&hm=41f76823e3745527cdd3bc8de75f59c1f8950844bc2fefec0e479479d64a741a&=&format=webp&quality=lossless&width=230&height=230" // URL da imagem que você quer adicionar (substitua pelo link da imagem desejada)
+                    },
+                    image: {
+                        url: "https://media.discordapp.net/attachments/1313212452821012552/1319060108466061353/image.png?ex=67669034&is=67653eb4&hm=aeb0805ad46dcbd31cc2b9b59b4a8a44100e860d0bfe7e9f1d52cbcc3bbeba45&=&format=webp&quality=lossless&width=563&height=179" // URL da imagem que você quer adicionar (substitua pelo link da imagem desejada)
+                    },
+                }]
+            };
+
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    // Exibe a notificação de sucesso
+                    document.getElementById('notification').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('notification').style.display = 'none';
+                    }, 3000); // Oculta a notificação após 3 segundos
+
+                    // Limpa o formulário
+                    this.reset();
+                } else {
+                    console.error('Erro ao enviar o Webhook:', response.status, response.statusText);
+                    alert('Erro ao enviar o formulário. Tente novamente.');
+                }
+            } catch (error) {
+                console.error('Erro ao enviar o Webhook:', error);
+                alert('Erro ao enviar o formulário. Tente novamente.');
+            }
+        });
+    </script>
+
+</body>
+</html>
